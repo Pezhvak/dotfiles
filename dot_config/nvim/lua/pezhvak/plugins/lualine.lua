@@ -1,13 +1,16 @@
-local function project_name()
-  -- Get the Git root directory if available
-  local git_root = vim.fn.system 'git rev-parse --show-toplevel 2> /dev/null'
-  git_root = git_root:gsub('\n', '') -- Remove trailing newline
+local project_cache = {}
 
-  if git_root ~= '' then
-    return vim.fn.fnamemodify(git_root, ':t') -- Basename of Git root
-  else
-    return vim.fn.fnamemodify(vim.fn.getcwd(), ':t') -- Fallback to cwd basename
+local function project_name()
+  local cwd = vim.uv.cwd() or vim.fn.getcwd()
+  local cached = project_cache[cwd]
+  if cached then
+    return cached
   end
+
+  local git_root = vim.fs.root(cwd, '.git')
+  local name = vim.fn.fnamemodify(git_root or cwd, ':t')
+  project_cache[cwd] = name
+  return name
 end
 
 return {
@@ -41,8 +44,6 @@ return {
             'FileChangedShellPost',
             'VimResized',
             'Filetype',
-            'CursorMoved',
-            'CursorMovedI',
             'ModeChanged',
           },
         },

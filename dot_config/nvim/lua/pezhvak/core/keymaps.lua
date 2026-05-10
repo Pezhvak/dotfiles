@@ -79,7 +79,6 @@ vim.keymap.set('n', '<leader>Y', '"+y', { desc = 'Copy to system clipboard' })
 
 -- delete without yank
 vim.keymap.set('n', '<leader>d', '"_d', { desc = 'Delete without yank' })
-vim.keymap.set('n', '<leader>d', '"_d', { desc = 'Delete without yank' })
 
 -- find files
 vim.keymap.set('n', '<leader>ff', ':lua Snacks.dashboard.pick("files")<CR>', { desc = 'Find files' })
