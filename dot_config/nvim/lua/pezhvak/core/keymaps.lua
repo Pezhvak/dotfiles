@@ -51,7 +51,6 @@ vim.keymap.set('n', '<leader>we', '<C-w>=', { desc = 'Even sizing windows' })
 vim.keymap.set('n', '<leader>wx', ':close<CR>', { desc = 'Closing current window' })
 
 -- tab control
-vim.keymap.set('n', '<leader>to', ':tabnew<CR>')
 vim.keymap.set('n', '<leader>tx', ':tabclose<CR>')
 vim.keymap.set('n', '<leader>tn', ':tabn<CR>')
 vim.keymap.set('n', '<leader>tp', ':tabp<CR>')

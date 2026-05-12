@@ -77,11 +77,30 @@ return {
 			opencodeTerm:toggle()
 		end
 
+		local k9sTerm = Terminal:new({
+			cmd = "k9s",
+			hidden = true,
+			direction = "float",
+			close_on_exit = false,
+			title_pos = "center",
+			float_opts = {
+				border = "none",
+				display_name = "K9s",
+				width = 160,
+				height = 32,
+			},
+		})
+
+		local function k9s_term_toggle()
+			k9sTerm:toggle()
+		end
+
 		local function close_all_terminals()
 			lazygit:close()
 			floatTerm:close()
 			codexTerm:close()
 			opencodeTerm:close()
+			k9sTerm:close()
 		end
 
 		vim.api.nvim_create_autocmd("TermClose", {
@@ -98,6 +117,7 @@ return {
 		vim.keymap.set("n", "<leader>tt", float_term_toggle, { desc = "Toggle floating terminal", silent = true })
 		vim.keymap.set("n", "<leader>tc", codex_term_toggle, { desc = "Toggle Codex terminal", silent = true })
 		vim.keymap.set("n", "<leader>to", opencode_term_toggle, { desc = "Toggle OpenCode terminal", silent = true })
+		vim.keymap.set("n", "<leader>tk", k9s_term_toggle, { desc = "Toggle K9s terminal", silent = true })
 		vim.keymap.set("t", "<c-w>", close_all_terminals, { desc = "Close all floating terminals", silent = true })
 	end,
 }
