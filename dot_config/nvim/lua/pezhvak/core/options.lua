@@ -31,22 +31,25 @@ vim.opt.title = true
 vim.opt.cmdheight = 0 -- remove empty space command bar at the bottom of screen
 
 -- spell check
-vim.opt.spell = true
+vim.opt.spell = false
 
 -- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
--- vim.schedule(function()
---   vim.o.clipboard = 'unnamedplus'
--- end)
+-- Schedule the setting after `UiEnter` because it can increase startup-time.
+-- Remove this option if you want your OS clipboard to remain independent.
+-- See `:help 'clipboard'`
+vim.schedule(function()
+  if vim.fn.has 'clipboard' == 1 then
+    vim.o.clipboard = 'unnamedplus'
+  end
+end)
 
 -- This indicates if line wraps, should it continue from start of the line or keep indentation
 vim.o.breakindent = false
 
 -- Save undo history
 vim.o.undofile = true
-vim.opt.undodir = os.getenv 'HOME' .. '/.vim/undodir'
+vim.o.undodir = os.getenv 'HOME' .. '/.vim/undodir'
+vim.fn.mkdir(vim.o.undodir, 'p')
 
 -- search settings
 vim.o.ignorecase = true

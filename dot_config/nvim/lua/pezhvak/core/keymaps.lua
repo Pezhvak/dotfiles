@@ -45,10 +45,10 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<leader>O', ':!open %<CR><CR>', { desc = 'Open current file externally' })
 
 -- window control
-vim.keymap.set('n', '<leader>sv', '<C-w>v', { desc = 'Split window vertically' })
-vim.keymap.set('n', '<leader>sh', '<C-w>s', { desc = 'Split window horizontally' })
-vim.keymap.set('n', '<leader>se', '<C-w>=', { desc = 'Even sizing windows' })
-vim.keymap.set('n', '<leader>sx', ':close<CR>', { desc = 'Closing current window' })
+vim.keymap.set('n', '<leader>wv', '<C-w>v', { desc = 'Split window vertically' })
+vim.keymap.set('n', '<leader>wh', '<C-w>s', { desc = 'Split window horizontally' })
+vim.keymap.set('n', '<leader>we', '<C-w>=', { desc = 'Even sizing windows' })
+vim.keymap.set('n', '<leader>wx', ':close<CR>', { desc = 'Closing current window' })
 
 -- tab control
 vim.keymap.set('n', '<leader>to', ':tabnew<CR>')

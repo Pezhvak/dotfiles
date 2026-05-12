@@ -13,6 +13,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Enable spell check only for prose-like filetypes',
+  group = vim.api.nvim_create_augroup('pezhvak-prose-spell', { clear = true }),
+  pattern = { 'gitcommit', 'markdown', 'text' },
+  callback = function()
+    vim.opt_local.spell = true
+  end,
+})
+
 -- Remove comment leader when inserting a new line
 vim.cmd [[autocmd FileType * set formatoptions-=ro]]
 
