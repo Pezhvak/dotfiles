@@ -22,6 +22,19 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Wrap prose at 80 columns',
+  group = vim.api.nvim_create_augroup('pezhvak-prose-wrap', { clear = true }),
+  pattern = { 'gitcommit', 'markdown', 'text' },
+  callback = function()
+    vim.opt_local.textwidth = 80
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    vim.opt_local.breakindent = true
+    vim.opt_local.formatoptions:append { 't', 'q' }
+  end,
+})
+
 -- Remove comment leader when inserting a new line
 vim.cmd [[autocmd FileType * set formatoptions-=ro]]
 
