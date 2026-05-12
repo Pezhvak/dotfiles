@@ -247,6 +247,17 @@ return {
       --
       -- But for many setups, the LSP (`ts_ls`) will work just fine
       ts_ls = {},
+      yamlls = {
+        settings = {
+          yaml = {
+            keyOrdering = false,
+            format = {
+              enable = true,
+            },
+            validate = true,
+          },
+        },
+      },
       --
 
       lua_ls = {
@@ -301,6 +312,7 @@ return {
       'gofumpt', -- Used to format Go code
       'goimports', -- Used to format Go code
       'prettierd',
+      'yamllint',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
