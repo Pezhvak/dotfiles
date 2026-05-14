@@ -16,8 +16,6 @@ command -v pyenv >/dev/null && eval "$(pyenv init -)"
 
 [ -f "$HOME/.jetbrains.vmoptions.sh" ] && . "$HOME/.jetbrains.vmoptions.sh"
 
-alias ida='sudo /Applications/IDA\ Professional\ 9.1.app/Contents/MacOS/ida'
-
 # Private/host-specific overrides (e.g. SSH aliases) — not tracked by chezmoi.
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
