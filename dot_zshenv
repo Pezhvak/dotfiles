@@ -1,0 +1,35 @@
+export XDG_CONFIG_HOME="$HOME/.config"
+
+export ZSH="$HOME/.oh-my-zsh"
+export NVM_DIR="$HOME/.nvm"
+export PNPM_HOME="$HOME/Library/pnpm"
+export PYENV_ROOT="$HOME/.pyenv"
+
+export KUBECONFIG="$HOME/.kube/config:$HOME/.kube/beenbo-config"
+
+export HERD_PHP_82_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/php/82/"
+export HERD_PHP_83_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/php/83/"
+
+# Set up PATH here (not .zprofile) so non-login shells — e.g. some editor
+# terminals — also see brewed tools.
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+typeset -U path
+path=(
+  /opt/homebrew/opt/openjdk@17/bin
+  /opt/homebrew/opt/mysql-client/bin
+  "$PYENV_ROOT/bin"
+  "$HOME/.local/bin"
+  "$HOME/go/bin"
+  "$HOME/.bun/bin"
+  "$PNPM_HOME"
+  "$HOME/.opencode/bin"
+  "$HOME/Documents/Flutter/bin/flutter/bin"
+  "$HOME/idea-shell-scripts"
+  "$HOME/Library/Application Support/Herd/bin"
+  "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+  $path
+)
+export PATH
+
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"

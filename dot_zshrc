@@ -1,0 +1,25 @@
+# Powerlevel10k instant prompt. Anything that prompts for input must go above.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+source "$ZSH/oh-my-zsh.sh"
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+command -v pyenv >/dev/null && eval "$(pyenv init -)"
+
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+[ -f "$HOME/.jetbrains.vmoptions.sh" ] && . "$HOME/.jetbrains.vmoptions.sh"
+
+alias ida='sudo /Applications/IDA\ Professional\ 9.1.app/Contents/MacOS/ida'
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+
+# Private/host-specific overrides (e.g. SSH aliases) — not tracked by chezmoi.
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
