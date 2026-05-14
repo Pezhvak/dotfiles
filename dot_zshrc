@@ -7,10 +7,23 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source "$ZSH/oh-my-zsh.sh"
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# Lazy-load nvm: sourcing nvm.sh costs ~200-500ms. Define shims that load
+# nvm on first use, then exec the real binary.
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  __nvm_load() {
+    unset -f nvm node npm npx pnpm yarn corepack 2>/dev/null
+    \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  }
+  for cmd in nvm node npm npx pnpm yarn corepack; do
+    eval "$cmd() { __nvm_load; $cmd \"\$@\"; }"
+  done
+  unset cmd
+fi
 
-command -v pyenv >/dev/null && eval "$(pyenv init -)"
+# --no-rehash skips the per-startup PATH scan; run `pyenv rehash` manually
+# after installing a new Python or shim.
+command -v pyenv >/dev/null && eval "$(pyenv init - --no-rehash zsh)"
 
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 

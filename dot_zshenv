@@ -8,8 +8,15 @@ export PYENV_ROOT="$HOME/.pyenv"
 export KUBECONFIG="$HOME/.kube/config:$HOME/.kube/beenbo-config"
 
 # Set up PATH here (not .zprofile) so non-login shells — e.g. some editor
-# terminals — also see brewed tools.
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# terminals — also see brewed tools. Cache `brew shellenv` output since the
+# brew Ruby startup is ~100ms per shell and the output rarely changes.
+__brew_shellenv_cache="${XDG_CACHE_HOME:-$HOME/.cache}/brew-shellenv.zsh"
+if [[ ! -s "$__brew_shellenv_cache" || /opt/homebrew/bin/brew -nt "$__brew_shellenv_cache" ]]; then
+  mkdir -p "${__brew_shellenv_cache:h}"
+  /opt/homebrew/bin/brew shellenv > "$__brew_shellenv_cache"
+fi
+source "$__brew_shellenv_cache"
+unset __brew_shellenv_cache
 
 typeset -U path
 path=(
