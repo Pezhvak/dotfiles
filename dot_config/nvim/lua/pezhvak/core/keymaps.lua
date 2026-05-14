@@ -15,13 +15,9 @@ vim.keymap.set('n', '[d', function() vim.diagnostic.jump { count = -1, float = t
 vim.keymap.set('n', ']b', '<cmd>bnext<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '[b', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+-- Exit terminal mode. Avoid <Esc><Esc>: a slow second press leaks the first
+-- <Esc> to the underlying TUI (claude/htop/lazygit) and cancels its action.
+vim.keymap.set('t', '<C-Space>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- disable arrow keys
 vim.keymap.set('n', '<up>', '<nop>')
