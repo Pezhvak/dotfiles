@@ -14,7 +14,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 typeset -U path
 path=(
   /opt/homebrew/opt/openjdk@17/bin
-  /opt/homebrew/opt/mysql-client/bin
   "$PYENV_ROOT/bin"
   "$HOME/.local/bin"
   "$HOME/go/bin"
