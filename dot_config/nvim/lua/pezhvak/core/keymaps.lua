@@ -89,6 +89,13 @@ vim.keymap.set('n', '<leader>d', '"_d', { desc = 'Delete without yank' })
 -- find files
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<CR>', { desc = 'Find files' })
 
+-- colorscheme picker (live preview as you cursor through). Force-loads the
+-- lazy alternates so they appear in completion, then opens the picker.
+vim.keymap.set('n', '<leader>uc', function()
+  require('lazy').load { plugins = { 'catppuccin', 'rose-pine', 'kanagawa', 'gruvbox' } }
+  vim.cmd 'Telescope colorscheme enable_preview=true'
+end, { desc = '[U]I [C]olorscheme' })
+
 vim.keymap.set('n', 'K', function()
   vim.lsp.buf.hover {
     border = 'rounded',
