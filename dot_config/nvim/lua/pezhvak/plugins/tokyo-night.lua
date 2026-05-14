@@ -20,9 +20,17 @@ return { -- You can easily change to a different colorscheme.
       end,
     }
 
-    -- Load the colorscheme here.
-    -- Like many other themes, this one has different styles, and you could load
-    -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-    vim.cmd.colorscheme 'tokyonight-night'
+    -- Apply the persisted colorscheme from the previous session, or fall back
+    -- to tokyonight-night. Lazy.nvim's colorscheme handler will load the
+    -- providing plugin on demand even if it's `lazy = true`.
+    local saved
+    local fd = io.open(vim.fn.stdpath 'state' .. '/last-colorscheme', 'r')
+    if fd then
+      saved = fd:read '*l'
+      fd:close()
+    end
+    if not (saved and saved ~= '' and pcall(vim.cmd.colorscheme, saved)) then
+      vim.cmd.colorscheme 'tokyonight-night'
+    end
   end,
 }

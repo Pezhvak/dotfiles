@@ -97,6 +97,27 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Remove comment leader when inserting a new line
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 
+-- Persist the active colorscheme across nvim restarts. Read back in
+-- tokyonight.lua's config function on startup. Use args.match (the name
+-- passed to :colorscheme) instead of vim.g.colors_name, because some
+-- plugins (rose-pine, kanagawa) overwrite colors_name with their base
+-- name and lose the variant.
+vim.api.nvim_create_autocmd("ColorScheme", {
+	group = vim.api.nvim_create_augroup("pezhvak-persist-colorscheme", { clear = true }),
+	desc = "Save the active colorscheme to state for the next session",
+	callback = function(args)
+		local name = args.match
+		if not name or name == "" then
+			return
+		end
+		local fd = io.open(vim.fn.stdpath("state") .. "/last-colorscheme", "w")
+		if fd then
+			fd:write(name)
+			fd:close()
+		end
+	end,
+})
+
 -- In terminal buffers (toggleterm floats, :terminal), forward the mouse wheel
 -- to the running TUI instead of scrolling nvim's view of the terminal buffer.
 -- Without this, scrolling inside claude/codex/lazygit/k9s drops you into
