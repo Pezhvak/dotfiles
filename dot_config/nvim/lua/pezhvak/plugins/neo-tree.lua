@@ -14,6 +14,7 @@ return {
     { '<leader>`', ':Neotree toggle<CR>', desc = 'NeoTree reveal', silent = true },
   },
   opts = {
+    use_popups_for_input = false, -- delegate rename/input prompts to vim.ui.input (snacks) for full vim motion support
     window = {
       position = 'right',
     },
@@ -57,6 +58,7 @@ return {
       },
     },
     filesystem = {
+      use_libuv_file_watcher = true, -- auto-refresh tree when files change on disk
       follow_current_file = {
         enabled = true, -- This will find and focus the file in the active buffer every time
         --               -- the current file is changed while the tree is open.
@@ -68,7 +70,6 @@ return {
         },
       },
       filtered_items = {
-        use_libuv_file_watcher = true,
         visible = false, -- show hidden files
         hide_dotfiles = false,
         hide_gitignored = false,
