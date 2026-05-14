@@ -91,6 +91,6 @@ vim.keymap.set('n', '<leader>ff', ':lua Snacks.dashboard.pick("files")<CR>', { d
 
 vim.keymap.set('n', 'K', function()
   vim.lsp.buf.hover {
-    border = 'single',
+    border = 'rounded',
   }
 end)

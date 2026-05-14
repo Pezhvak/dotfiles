@@ -28,6 +28,7 @@ vim.o.mouse = 'a'
 vim.opt.laststatus = 3 -- this status line will take entire screen
 vim.opt.showmode = false -- Don't show the mode, since it's already in the status line
 vim.opt.title = true
+vim.opt.titlestring = '%t %M — %{fnamemodify(getcwd(), ":t")}'
 vim.opt.cmdheight = 0 -- remove empty space command bar at the bottom of screen
 
 -- spell check
@@ -63,6 +64,8 @@ vim.opt.termguicolors = true
 vim.opt.background = 'dark'
 vim.o.signcolumn = 'yes' -- Keep signcolumn on by default
 vim.o.cursorline = true -- Highlight the line your currently at
+vim.o.cursorlineopt = 'number' -- only the line number, not the whole row
+vim.o.winborder = 'rounded' -- consistent rounded borders for every float
 
 -- Decrease update time
 vim.o.updatetime = 250
@@ -85,7 +88,7 @@ vim.o.splitbelow = true
 --  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
 --   See `:help lua-options`
 --   and `:help lua-options-guide`
-vim.o.list = false -- annoying indentation guides
+vim.o.list = true -- show tabs, trailing whitespace, and non-breaking spaces
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
