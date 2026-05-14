@@ -38,6 +38,10 @@ return {
 				return yamllint
 			end
 
+			-- golangci-lint v2 exits with code 7 ("ErrorWasLogged") on typecheck/loader
+			-- errors even when JSON diagnostics are written to stdout. Parse anyway.
+			lint.linters.golangcilint.ignore_exitcode = true
+
 			lint.linters_by_ft = {
 				markdown = { "markdownlint" },
 				yaml = { "yamllint" },
