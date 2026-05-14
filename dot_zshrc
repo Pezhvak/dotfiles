@@ -14,8 +14,6 @@ command -v pyenv >/dev/null && eval "$(pyenv init -)"
 
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-[ -f "$HOME/.jetbrains.vmoptions.sh" ] && . "$HOME/.jetbrains.vmoptions.sh"
-
 # Private/host-specific overrides (e.g. SSH aliases) — not tracked by chezmoi.
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 

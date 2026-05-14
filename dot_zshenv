@@ -22,8 +22,6 @@ path=(
   "$PNPM_HOME"
   "$HOME/.opencode/bin"
   "$HOME/Documents/Flutter/bin/flutter/bin"
-  "$HOME/idea-shell-scripts"
-  "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
   $path
 )
 export PATH
