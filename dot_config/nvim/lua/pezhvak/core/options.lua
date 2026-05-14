@@ -28,7 +28,7 @@ vim.o.mouse = 'a'
 vim.opt.laststatus = 3 -- this status line will take entire screen
 vim.opt.showmode = false -- Don't show the mode, since it's already in the status line
 vim.opt.title = true
-vim.opt.titlestring = '%t %M — %{fnamemodify(getcwd(), ":t")}'
+vim.opt.titlestring = '%{fnamemodify(getcwd(), ":t")}'
 vim.opt.cmdheight = 0 -- remove empty space command bar at the bottom of screen
 
 -- spell check
