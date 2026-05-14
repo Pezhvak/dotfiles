@@ -7,9 +7,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 
 export KUBECONFIG="$HOME/.kube/config:$HOME/.kube/beenbo-config"
 
-export HERD_PHP_82_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/php/82/"
-export HERD_PHP_83_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/php/83/"
-
 # Set up PATH here (not .zprofile) so non-login shells — e.g. some editor
 # terminals — also see brewed tools.
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -26,7 +23,6 @@ path=(
   "$HOME/.opencode/bin"
   "$HOME/Documents/Flutter/bin/flutter/bin"
   "$HOME/idea-shell-scripts"
-  "$HOME/Library/Application Support/Herd/bin"
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
   $path
 )
