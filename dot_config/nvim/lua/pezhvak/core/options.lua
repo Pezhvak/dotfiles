@@ -50,6 +50,7 @@ vim.o.breakindent = false
 vim.o.undofile = true
 vim.o.undodir = os.getenv 'HOME' .. '/.vim/undodir'
 vim.fn.mkdir(vim.o.undodir, 'p')
+vim.o.swapfile = false -- rely on persistent undo, skip the .swp clutter
 
 -- search settings
 vim.o.ignorecase = true
