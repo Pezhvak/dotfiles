@@ -271,18 +271,18 @@ return {
             },
           },
         },
+        -- NOTE: runtime/workspace/globals are provided by lazydev.nvim per buffer;
+        -- setting workspace.library here used to load the entire Neovim runtime
+        -- on every lua_ls start, which was the dominant startup cost for lua files.
         settings = {
           Lua = {
             completion = {
               callSnippet = 'Replace',
             },
-            runtime = { version = 'LuaJIT' },
             workspace = {
               checkThirdParty = false,
-              library = vim.api.nvim_get_runtime_file('', true),
             },
             diagnostics = {
-              globals = { 'vim' },
               disable = { 'missing-fields' },
             },
             format = {

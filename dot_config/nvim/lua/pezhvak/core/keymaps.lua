@@ -87,7 +87,7 @@ vim.keymap.set('n', '<leader>Y', '"+y', { desc = 'Copy to system clipboard' })
 vim.keymap.set('n', '<leader>d', '"_d', { desc = 'Delete without yank' })
 
 -- find files
-vim.keymap.set('n', '<leader>ff', ':lua Snacks.dashboard.pick("files")<CR>', { desc = 'Find files' })
+vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<CR>', { desc = 'Find files' })
 
 vim.keymap.set('n', 'K', function()
   vim.lsp.buf.hover {

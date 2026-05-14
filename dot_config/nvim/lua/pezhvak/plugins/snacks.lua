@@ -4,9 +4,12 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
+    -- Disabled modules and what replaces them:
+    --   explorer → neo-tree.nvim + oil.nvim
+    --   indent   → indent-blankline.nvim (ibl)
+    --   scope    → companion to indent; not needed without snacks.indent
+    --   words    → vim-illuminate
+    --   picker   → telescope.nvim is the primary picker (LSP, ui-select, all <leader>s* binds)
     bigfile = { enabled = true },
     dashboard = {
       enabled = true,
@@ -18,23 +21,28 @@ return {
 ██╔═══╝ ██╔══╝   ███╔╝  ██╔══██║╚██╗ ██╔╝██╔══██║██╔═██╗ 
 ██║     ███████╗███████╗██║  ██║ ╚████╔╝ ██║  ██║██║  ██╗
 ╚═╝     ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝]],
+        keys = {
+          { icon = ' ', key = 'f', desc = 'Find File',    action = ':Telescope find_files' },
+          { icon = ' ', key = 'n', desc = 'New File',     action = ':ene | startinsert' },
+          { icon = ' ', key = 'g', desc = 'Find Text',    action = ':Telescope live_grep' },
+          { icon = ' ', key = 'r', desc = 'Recent Files', action = ':Telescope oldfiles' },
+          { icon = ' ', key = 'c', desc = 'Config',       action = ":lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })" },
+          { icon = '󰒲 ', key = 'L', desc = 'Lazy',         action = ':Lazy' },
+          { icon = ' ', key = 'q', desc = 'Quit',         action = ':qa' },
+        },
       },
       sections = {
         { section = 'header' },
         { section = 'keys', gap = 1, padding = 1 },
       },
     },
-    explorer = { enabled = true },
-    indent = { enabled = true },
     input = { enabled = true },
-    picker = { enabled = true },
     notifier = {
       timeout = 3000,
       enabled = true,
       top_down = false, -- places notifications at the bottom right of the screen
     },
     quickfile = { enabled = true },
-    scope = { enabled = true },
     scroll = {
       enabled = true,
       filter = function(buf)
@@ -42,6 +50,5 @@ return {
       end,
     },
     statuscolumn = { enabled = true },
-    words = { enabled = true },
   },
 }

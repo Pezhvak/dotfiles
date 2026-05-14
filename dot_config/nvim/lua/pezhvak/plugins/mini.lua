@@ -1,6 +1,7 @@
 -- NOTE: Part of Highlight todo, notes, etc in comments
 return { -- Collection of various small independent plugins/modules
   'nvim-mini/mini.nvim',
+  event = 'VeryLazy',
   config = function()
     -- Better Around/Inside textobjects
     --
