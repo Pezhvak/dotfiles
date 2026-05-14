@@ -97,6 +97,29 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Remove comment leader when inserting a new line
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 
+-- In terminal buffers (toggleterm floats, :terminal), forward the mouse wheel
+-- to the running TUI instead of scrolling nvim's view of the terminal buffer.
+-- Without this, scrolling inside claude/codex/lazygit/k9s drops you into
+-- nvim's terminal scrollback, which renders alternate-screen TUIs as garbled
+-- fragments of past frames until the TUI repaints.
+vim.api.nvim_create_autocmd("TermOpen", {
+	group = vim.api.nvim_create_augroup("pezhvak-term-scroll-passthrough", { clear = true }),
+	desc = "Forward scroll wheel to the running TUI inside terminal buffers",
+	callback = function(args)
+		local function forward(key)
+			return function()
+				vim.cmd("startinsert")
+				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, false, true), "n", false)
+			end
+		end
+		local opts = { buffer = args.buf, silent = true }
+		vim.keymap.set("n", "<ScrollWheelUp>", forward("<ScrollWheelUp>"), opts)
+		vim.keymap.set("n", "<ScrollWheelDown>", forward("<ScrollWheelDown>"), opts)
+		vim.keymap.set("n", "<S-ScrollWheelUp>", forward("<S-ScrollWheelUp>"), opts)
+		vim.keymap.set("n", "<S-ScrollWheelDown>", forward("<S-ScrollWheelDown>"), opts)
+	end,
+})
+
 -- Golang auto imports on save
 -- vim.api.nvim_create_autocmd('BufWritePre', {
 --   pattern = '*.go',
