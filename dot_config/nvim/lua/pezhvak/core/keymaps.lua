@@ -51,9 +51,9 @@ vim.keymap.set('n', '<leader>we', '<C-w>=', { desc = 'Even sizing windows' })
 vim.keymap.set('n', '<leader>wx', ':close<CR>', { desc = 'Closing current window' })
 
 -- tab control
-vim.keymap.set('n', '<leader>tx', ':tabclose<CR>')
-vim.keymap.set('n', '<leader>tn', ':tabn<CR>')
-vim.keymap.set('n', '<leader>tp', ':tabp<CR>')
+vim.keymap.set('n', '<leader><tab>x', ':tabclose<CR>', { desc = 'Close tab' })
+vim.keymap.set('n', '<leader><tab>n', ':tabn<CR>', { desc = 'Next tab' })
+vim.keymap.set('n', '<leader><tab>p', ':tabp<CR>', { desc = 'Previous tab' })
 
 -- wrapped lines j,k
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = 'Move up wrapped lines' })
