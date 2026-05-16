@@ -15,9 +15,16 @@ vim.keymap.set('n', '[d', function() vim.diagnostic.jump { count = -1, float = t
 vim.keymap.set('n', ']b', '<cmd>bnext<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '[b', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
 
--- Exit terminal mode. Avoid <Esc><Esc>: a slow second press leaks the first
--- <Esc> to the underlying TUI (claude/htop/lazygit) and cancels its action.
+-- Toggle terminal mode with <C-Space>. Avoid <Esc><Esc>: a slow second press
+-- leaks the first <Esc> to the underlying TUI (claude/htop/lazygit) and
+-- cancels its action. The normal-mode half is buffer-local to terminals so
+-- <C-Space> in a regular file buffer does nothing surprising.
 vim.keymap.set('t', '<C-Space>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.api.nvim_create_autocmd('TermOpen', {
+  callback = function(ev)
+    vim.keymap.set('n', '<C-Space>', 'i', { buffer = ev.buf, desc = 'Enter terminal mode' })
+  end,
+})
 
 -- disable arrow keys
 vim.keymap.set('n', '<up>', '<nop>')
