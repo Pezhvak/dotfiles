@@ -75,8 +75,6 @@ vim.keymap.set('v', '<', '<gv', { desc = 'Indent lines left' })
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move lines down' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move lines up' })
 vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Move below line to the end of here' })
-vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Page Down' })
-vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Page Up' })
 vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Jump to next occurrence' })
 vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Jump to previous occurrence' })
 
