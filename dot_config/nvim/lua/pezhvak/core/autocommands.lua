@@ -35,24 +35,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-	desc = "Hard-wrap markdown paragraphs at 80 columns on save",
-	group = vim.api.nvim_create_augroup("pezhvak-markdown-hard-wrap", { clear = true }),
-	pattern = "*.md",
-	callback = function()
-		local view = vim.fn.winsaveview()
-		local was_modified = vim.bo.modified
-
-		vim.cmd([[silent keepjumps normal! ggVGgq]])
-
-		if not was_modified and vim.bo.modified then
-			vim.bo.modified = false
-		end
-
-		vim.fn.winrestview(view)
-	end,
-})
-
 vim.api.nvim_create_autocmd("FileType", {
 	desc = "Wrap yaml comments at 80 columns",
 	group = vim.api.nvim_create_augroup("pezhvak-yaml-wrap", { clear = true }),
