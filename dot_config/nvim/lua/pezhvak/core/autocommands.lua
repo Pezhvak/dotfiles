@@ -94,6 +94,28 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
+-- Auto-reload buffers when the underlying file changes on disk. `autoread`
+-- alone only reloads on certain events; firing `checktime` on focus, buffer
+-- enter, and cursor-hold catches edits made by other tools (formatters,
+-- git pulls, AI agents) without needing to :e!.
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+	group = vim.api.nvim_create_augroup("pezhvak-autoread-checktime", { clear = true }),
+	desc = "Check for external file changes and reload buffers",
+	callback = function()
+		if vim.fn.mode() ~= "c" and vim.bo.buftype == "" then
+			vim.cmd("checktime")
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+	group = vim.api.nvim_create_augroup("pezhvak-autoread-notify", { clear = true }),
+	desc = "Notify when a buffer was reloaded due to an external change",
+	callback = function()
+		vim.notify("File changed on disk; buffer reloaded", vim.log.levels.INFO)
+	end,
+})
+
 -- Remove comment leader when inserting a new line
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 

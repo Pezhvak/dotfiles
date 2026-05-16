@@ -70,6 +70,9 @@ vim.o.winborder = 'rounded' -- consistent rounded borders for every float
 -- Decrease update time
 vim.o.updatetime = 250
 
+-- Reload buffer when the file changes on disk (paired with checktime autocmds)
+vim.o.autoread = true
+
 -- Backspace key
 vim.opt.backspace = 'indent,eol,start'
 
