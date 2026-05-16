@@ -1,6 +1,6 @@
 {
   "printWidth": 80,
-  "proseWrap": "always",
+  "proseWrap": "preserve",
   "overrides": [
     {
       "files": [
@@ -14,7 +14,7 @@
     {
       "files": "*.md",
       "options": {
-        "proseWrap": "always",
+        "proseWrap": "preserve",
         "printWidth": 80
       }
     }
