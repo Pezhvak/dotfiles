@@ -35,31 +35,13 @@ return { -- Autoformat
 			lua = { "stylua" },
 			go = { "goimports", "gofumpt" },
 			dart = { "dart_format" },
-			markdown = { "prettierd_markdown" },
-			yaml = { "prettierd_yaml" },
+			markdown = { "prettierd" },
+			yaml = { "prettierd" },
 			-- Conform can also run multiple formatters sequentially
 			-- python = { "isort", "black" },
 			--
 			-- You can use 'stop_after_first' to run the first available formatter from the list
 			javascript = { "prettierd", "prettier", stop_after_first = true },
-		},
-		formatters = {
-			prettierd_markdown = {
-				inherit = false,
-				command = "prettierd",
-				args = { "$FILENAME" },
-				env = {
-					PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config") .. "/.prettierrc.json",
-				},
-			},
-			prettierd_yaml = {
-				inherit = false,
-				command = "prettierd",
-				args = { "$FILENAME" },
-				env = {
-					PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config") .. "/.prettierrc.json",
-				},
-			},
 		},
 	},
 }
