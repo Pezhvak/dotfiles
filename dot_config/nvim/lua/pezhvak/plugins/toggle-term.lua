@@ -4,6 +4,9 @@ return {
 	config = function()
 		require("toggleterm").setup({
 			open_mapping = [[<c-\>]],
+			-- Don't yank the view back to the bottom on every chunk of output;
+			-- lets you scroll up in normal mode while a TUI is still streaming.
+			auto_scroll = false,
 		})
 
 		local Terminal = require("toggleterm.terminal").Terminal
