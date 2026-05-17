@@ -54,6 +54,23 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Open current file externally
 vim.keymap.set('n', '<leader>O', ':!open %<CR><CR>', { desc = 'Open current file externally' })
 
+-- Reveal current file in Finder (selects it in a Finder window)
+vim.keymap.set('n', '<leader>fR', function()
+  local f = vim.fn.expand '%:p'
+  if f == '' then
+    vim.notify('No file in buffer', vim.log.levels.WARN)
+    return
+  end
+  vim.fn.jobstart({ 'open', '-R', f }, { detach = true })
+end, { desc = 'Finder: reveal current file' })
+
+-- Open project root in Finder (git root if present, else cwd)
+vim.keymap.set('n', '<leader>fP', function()
+  local cwd = vim.uv.cwd() or vim.fn.getcwd()
+  local root = vim.fs.root(cwd, '.git') or cwd
+  vim.fn.jobstart({ 'open', root }, { detach = true })
+end, { desc = 'Finder: open project' })
+
 -- window control
 vim.keymap.set('n', '<leader>wv', '<C-w>v', { desc = 'Split window vertically' })
 vim.keymap.set('n', '<leader>wh', '<C-w>s', { desc = 'Split window horizontally' })
