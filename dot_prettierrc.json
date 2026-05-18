@@ -17,6 +17,15 @@
         "proseWrap": "preserve",
         "printWidth": 80
       }
+    },
+    {
+      "files": [
+        "*.json",
+        "*.jsonc"
+      ],
+      "options": {
+        "printWidth": 1
+      }
     }
   ]
 }
